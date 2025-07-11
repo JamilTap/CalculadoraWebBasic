@@ -2,6 +2,7 @@
 
 Una calculadora web desarrollada con HTML, CSS y JavaScript puro. Incluye historial de operaciones y pruebas automatizadas usando **Jest** y **Mocha**.
 
+> Calculadora Web (https://jamiltap.github.io/CalculadoraWebBasic/)
 ---
 
 ## 🚀 Demo
