@@ -4,26 +4,51 @@
   <meta charset="UTF-8" />
   <title>Calculadora</title>
   <style>
-    @keyframes gradientAnimation {
+  
+ body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(45deg, #ff00cc, #3333ff, #00ffcc, #ffcc00);
+      background-size: 600% 600%;
+      animation: psicodelico 10s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: sans-serif;
+      color: rgb(0, 0, 0);
+    }
+
+    @keyframes psicodelico {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
-    body {
-      font-family: 'Arial', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background: linear-gradient(-45deg, #2b5ba7, #31a74e, #922c2c, #a5a32d);
-      background-size: 400% 400%;
-      animation: gradientAnimation 20s ease infinite;
+    h1 {
+      font-size: 3em;
+      text-shadow: 0 0 10px white, 0 0 20px magenta;
+    }
+ .prueba-btn.basico {
+      background-color: #4CAF50;
+      color: white;
     }
 
+    .prueba-btn.medio {
+      background-color: #FFC107;
+      color: #333;
+    }
+
+    .prueba-btn.extremo {
+      background-color: #F44336;
+      color: white;
+    }
+
+    .emoji {
+      font-size: 1.2em;
+    }
+    
     .calculadora {
-      width: 320px;
+      width: 400px;
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
@@ -145,111 +170,323 @@
       <button onclick="agregarParentesis('(')">(</button>
       <button onclick="agregarParentesis(')')">)</button>
 
-      <button style="grid-column: span 4;" onclick="borrarUltimo()">← Borrar último</button>
+      <button style="grid-column: span 4;" onclick="borrarUltimo()">←</button>
     </div>
+    
     <div class="historial">
       <h3>Historial</h3>
       <ul id="lista-historial"></ul>
     </div>
   </div>
+  
+<div class="pruebas-sidebar">
+      <button class="prueba-btn basico" onclick="pruebasAutomaticas()">
+        <span class="emoji">🧪</span> Pruebas Básicas
+      </button>
+      <button class="prueba-btn medio" onclick="pruebasPesadas()">
+        <span class="emoji">⚡</span> Pruebas Medias
+      </button>
+      <button class="prueba-btn extremo" onclick="pruebasExtremass()">
+        <span class="emoji">🚀</span> Pruebas Extremas
+      </button>
+    </div>
 
   <script>
-    const pantalla = document.getElementById('pantalla');
-    const btnIgual = document.getElementById('btn-igual');
+  const pantalla = document.getElementById('pantalla');
+  const btnIgual = document.getElementById('btn-igual');
+  const historial = document.getElementById('lista-historial');
 
-    function agregarNumero(numero) {
-      if (pantalla.value === 'Error') {
-        pantalla.value = '';
-        activarIgual();
-      }
-      pantalla.value += numero;
-    }
-
-    function agregarOperador(operador) {
-      const ultimoCaracter = pantalla.value.slice(-1);
-      if (!['+', '-', '*', '/', '%'].includes(ultimoCaracter) && pantalla.value !== 'Error') {
-        pantalla.value += operador;
-      }
-    }
-
-    function agregarParentesis(par) {
-      if (pantalla.value === 'Error') {
-        pantalla.value = '';
-        activarIgual();
-      }
-      pantalla.value += par;
-    }
-
-    function calcular() {
-      const operacionAnterior = document.getElementById('operacion-anterior');
-      const historial = document.getElementById('lista-historial');
-      try {
-        const operacion = pantalla.value;
-        const resultado = eval(operacion);
-        operacionAnterior.textContent = operacion + ' =';
-        pantalla.value = resultado;
-
-        const li = document.createElement('li');
-        li.innerHTML = `✅ <strong>${operacion} = ${resultado}</strong>`;
-        historial.appendChild(li);
-      } catch {
-        pantalla.value = 'Error';
-        const li = document.createElement('li');
-        li.innerHTML = `❌ <strong>Error</strong>`;
-        historial.appendChild(li);
-        desactivarIgual();
-      }
-    }
-
-    function limpiar() {
+  function agregarNumero(numero) {
+    if (pantalla.value === 'Error') {
       pantalla.value = '';
-      document.getElementById('operacion-anterior').textContent = '';
+      activarIgual();
+    }
+    pantalla.value += numero;
+  }
+
+  function agregarOperador(operador) {
+    const ultimoCaracter = pantalla.value.slice(-1);
+    if (!['+', '-', '*', '/', '%'].includes(ultimoCaracter) && pantalla.value !== 'Error') {
+      pantalla.value += operador;
+    }
+  }
+
+  function agregarParentesis(par) {
+    if (pantalla.value === 'Error') {
+      pantalla.value = '';
+      activarIgual();
+    }
+    pantalla.value += par;
+  }
+
+  function calcular() {
+    const operacionAnterior = document.getElementById('operacion-anterior');
+    try {
+      const operacion = pantalla.value;
+      const tiempoInicio = performance.now();
+
+      // Evalúa con funciones matemáticas permitidas
+      const resultado = Function('"use strict"; return (' + transformarExpresion(operacion) + ')')();
+
+      const tiempoFin = performance.now();
+      const tiempo = (tiempoFin - tiempoInicio).toFixed(4);
+
+      operacionAnterior.textContent = operacion + ' =';
+      pantalla.value = resultado;
+
+      const li = document.createElement('li');
+      li.innerHTML = `✅ <strong>${operacion} = ${resultado}</strong> <span style="color:gray">(${tiempo} ms)</span>`;
+      historial.appendChild(li);
+    } catch (error) {
+      pantalla.value = 'Error';
+      const li = document.createElement('li');
+      li.innerHTML = `❌ <strong>Error: ${error.message}</strong>`;
+      historial.appendChild(li);
+      desactivarIgual();
+    }
+  }
+
+  function transformarExpresion(expr) {
+    // Soporte básico para funciones matemáticas
+    return expr
+      .replace(/\bsqrt\b/g, 'Math.sqrt')
+      .replace(/\bsin\b/g, 'Math.sin')
+      .replace(/\bcos\b/g, 'Math.cos')
+      .replace(/\btan\b/g, 'Math.tan')
+      .replace(/\blog\b/g, 'Math.log')
+      .replace(/\bpi\b/gi, 'Math.PI')
+      .replace(/\be\b/gi, 'Math.E')
+      .replace(/\babs\b/g, 'Math.abs')
+      .replace(/\bpow\b/g, 'Math.pow')
+      .replace(/\bexp\b/g, 'Math.exp');
+  }
+
+  function limpiar() {
+    pantalla.value = '';
+    document.getElementById('operacion-anterior').textContent = '';
+    activarIgual();
+  }
+
+  function borrarUltimo() {
+    if (pantalla.value === 'Error') {
+      pantalla.value = '';
+      activarIgual();
+      return;
+    }
+    pantalla.value = pantalla.value.slice(0, -1);
+  }
+
+  function desactivarIgual() {
+    btnIgual.disabled = true;
+    btnIgual.style.opacity = '0.5';
+    btnIgual.style.cursor = 'not-allowed';
+  }
+
+  function activarIgual() {
+    btnIgual.disabled = false;
+    btnIgual.style.opacity = '1';
+    btnIgual.style.cursor = 'pointer';
+  }
+
+  document.addEventListener('keydown', function (e) {
+    const teclasValidas = '0123456789+-*/().%';
+    const esControl = ['Enter', 'Backspace', 'Escape'];
+
+    if (pantalla.value === 'Error' && '0123456789'.includes(e.key)) {
+      pantalla.value = '';
       activarIgual();
     }
 
-    function borrarUltimo() {
-      if (pantalla.value === 'Error') {
-        pantalla.value = '';
-        activarIgual();
-        return;
-      }
-      pantalla.value = pantalla.value.slice(0, -1);
+    if (teclasValidas.includes(e.key)) {
+      pantalla.value += e.key;
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (!btnIgual.disabled) calcular();
+    } else if (e.key === 'Backspace') {
+      borrarUltimo();
+    } else if (e.key === 'Escape') {
+      limpiar();
+    } else if (!esControl.includes(e.key)) {
+      e.preventDefault();
     }
+  });
 
-    function desactivarIgual() {
-      btnIgual.disabled = true;
-      btnIgual.style.opacity = '0.5';
-      btnIgual.style.cursor = 'not-allowed';
-    }
+  // 🔬 Función para pruebas matemáticas automáticas
+  function pruebasAutomaticas() {
+    const pruebas = [
+      "5+5*2",
+      "sqrt(144)",
+      "pow(2,10)",
+      "log(100)",
+      "sin(pi/2)",
+      "abs(-50)",
+      "exp(1)",
+      "tan(45)", // en radianes
+      "1/0",      // infinito
+      "5++5",     // error
+      "sqrt(-1)", // error NaN
+    ];
 
-    function activarIgual() {
-      btnIgual.disabled = false;
-      btnIgual.style.opacity = '1';
-      btnIgual.style.cursor = 'pointer';
-    }
-
-    document.addEventListener('keydown', function (e) {
-      const teclasValidas = '0123456789+-*/().%';
-      const esControl = ['Enter', 'Backspace', 'Escape'];
-
-      if (pantalla.value === 'Error' && '0123456789'.includes(e.key)) {
-        pantalla.value = '';
-        activarIgual();
-      }
-
-      if (teclasValidas.includes(e.key)) {
-        pantalla.value += e.key;
-      } else if (e.key === 'Enter') {
-        e.preventDefault();
-        if (!btnIgual.disabled) calcular();
-      } else if (e.key === 'Backspace') {
-        borrarUltimo();
-      } else if (e.key === 'Escape') {
-        limpiar();
-      } else if (!esControl.includes(e.key)) {
-        e.preventDefault();
-      }
+    historial.innerHTML += `<li>🧪 <strong>Iniciando pruebas automáticas...</strong></li>`;
+    pruebas.forEach(expr => {
+      pantalla.value = expr;
+      calcular();
     });
-  </script>
+  }
+  function pruebasPesadas() {
+  historial.innerHTML += `<li>🔥 <strong>Iniciando pruebas pesadas de rendimiento...</strong></li>`;
+
+  const pruebas = [
+    {
+      descripcion: "Cálculo de pow(999999, 1000)",
+      operacion: () => Math.pow(999999, 1000)
+    },
+    {
+      descripcion: "Suma de 10 millones de números",
+      operacion: () => {
+        let suma = 0;
+        for (let i = 0; i < 1e7; i++) {
+          suma += i;
+        }
+        return suma;
+      }
+    },
+    {
+      descripcion: "Calcular factorial de 10000",
+      operacion: () => {
+        let res = BigInt(1);
+        for (let i = BigInt(2); i <= 10000n; i++) {
+          res *= i;
+        }
+        return res.toString().slice(0, 30) + "..."; // Evita bloqueo
+      }
+    },
+    {
+      descripcion: "Sumar serie de 1/n² hasta 10 millones",
+      operacion: () => {
+        let suma = 0;
+        for (let i = 1; i <= 1e7; i++) {
+          suma += 1 / (i * i);
+        }
+        return suma;
+      }
+    }
+  ];
+
+  pruebas.forEach(test => {
+    const inicio = performance.now();
+    let resultado;
+    try {
+      resultado = test.operacion();
+      const fin = performance.now();
+      const li = document.createElement('li');
+      li.innerHTML = `✅ <strong>${test.descripcion}</strong> → <em>Resultado:</em> ${resultado} <span style="color:gray">(${(fin - inicio).toFixed(2)} ms)</span>`;
+      historial.appendChild(li);
+    } catch (error) {
+      const li = document.createElement('li');
+      li.innerHTML = `❌ <strong>${test.descripcion}</strong> → Error: ${error.message}`;
+      historial.appendChild(li);
+    }
+  });
+}
+if (performance.memory) {
+  console.log(performance.memory);
+}
+//pruebas extremas
+function pruebasExtremass() {
+  historial.innerHTML += `<li>⚠️ <strong>Pruebas EXTREMAS de rendimiento y memoria</strong></li>`;
+
+  const pruebas = [
+    {
+      descripcion: "🔢 1 millón de raíces cuadradas",
+      operacion: () => {
+        let total = 0;
+        for (let i = 1; i <= 1_000_000; i++) {
+          total += Math.sqrt(i);
+        }
+        return total;
+      }
+    },
+    {
+      descripcion: "📈 100 mil operaciones matemáticas aleatorias",
+      operacion: () => {
+        let total = 0;
+        for (let i = 0; i < 100_000; i++) {
+          let a = Math.random() * 1000;
+          let b = Math.random() * 1000;
+          total += Math.sin(a) + Math.log(b) + a * b / (a + 1);
+        }
+        return total.toFixed(2);
+      }
+    },
+    {
+      descripcion: "🧮 Multiplicación de matrices 200x200",
+      operacion: () => {
+        const size = 200;
+        const A = Array.from({ length: size }, () => Array.from({ length: size }, () => Math.random()));
+        const B = Array.from({ length: size }, () => Array.from({ length: size }, () => Math.random()));
+        const result = Array.from({ length: size }, () => Array(size).fill(0));
+
+        for (let i = 0; i < size; i++) {
+          for (let j = 0; j < size; j++) {
+            for (let k = 0; k < size; k++) {
+              result[i][j] += A[i][k] * B[k][j];
+            }
+          }
+        }
+
+        return result[0][0].toFixed(4); // Solo muestra una celda
+      }
+    },
+    {
+      descripcion: "🧠 Procesamiento de array gigante (1 millón elementos)",
+      operacion: () => {
+        const arr = Array.from({ length: 1_000_000 }, (_, i) => i + 1);
+        const filtrado = arr.filter(n => n % 2 === 0);
+        const mapeado = filtrado.map(n => Math.sqrt(n));
+        const suma = mapeado.reduce((acc, val) => acc + val, 0);
+        return suma.toFixed(2);
+      }
+    },
+    {
+      descripcion: "🔁 Cálculo recursivo de Fibonacci (simulado hasta 1000000)",
+      operacion: () => {
+        let a = 0n, b = 1n;
+        for (let i = 0; i < 1_000_000; i++) {
+          [a, b] = [b, a + b];
+        }
+        return a.toString().slice(0, 20) + '...'; // Trunca para evitar freeze
+      }
+    }
+  ];
+
+  pruebas.forEach(test => {
+    const inicio = performance.now();
+    let resultado;
+    try {
+      resultado = test.operacion();
+      const fin = performance.now();
+      const li = document.createElement('li');
+      li.innerHTML = `✅ <strong>${test.descripcion}</strong> → <em>Resultado:</em> ${resultado} <span style="color:gray">(${(fin - inicio).toFixed(2)} ms)</span>`;
+      historial.appendChild(li);
+    } catch (error) {
+      const li = document.createElement('li');
+      li.innerHTML = `❌ <strong>${test.descripcion}</strong> → Error: ${error.message}`;
+      historial.appendChild(li);
+    }
+  });
+  
+}
+it('prueba lenta', function() {
+  this.timeout(5000); // 5 segundos
+  // código de prueba
+});
+</script>
+
+
+
 </body>
+
 </html>
+
+
