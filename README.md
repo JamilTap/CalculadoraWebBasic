@@ -46,16 +46,16 @@ git clone https://github.com/Jamiltap/calculadora.git
 
 cd calculadora
 
-2. Abre `index2.html` en tu navegador.
+2. Abre `index.html` en tu navegador.
 
 ## Cómo ejecutar pruebas
 3.Instala las dependencias (si hay):
 ```bash
-npm install
-npm test
+npm install --save-dev jest @testing-library/jest-dom jsdom
+npm jest
 ```
 ## 🧪 Ejecutar Pruebas Jest
-4. Cambiar el una parte del codigo del Package.json,el "test" a jest
+4. Extraer el archivo jest test y dejarlo en la carpeta del index, cambiar el script para el uso del framework
    
 ```bash
   "type": "module",
@@ -64,14 +64,14 @@ npm test
   },
  
 ```
-NOTA: debe marcarles unos 15 errores en ambos frameworks, eso son errores provocados por el desarrollador para comprobar el funcionamiento de ambos framewor
+NOTA: debe marcarles unos 15 errores en ambos frameworks, eso son errores provocados por el desarrollador para comprobar el funcionamiento de ambos framework
 ---
-5. Debes borrar el archivo app.test.js o guardarlo en una nota rapida, ese es el codigo para el test mocha,si no se hace el framework jest va a intentar evaluar el codigo Mocha dando un error.
+5. Ejecuta las pruebas Jest con el siguiente comando en la terminal
 ```bash
 npx jest
 ```
 ##  Ejecutar Pruebas Mocha
-6. Cambiar el una parte del codigo del Package.json,el "test" a Mocha
+6. Extraer el  archivo "mocha test" y cambiar el una parte del codigo del Package.json,el "test" a Mocha
    
  ```bash
   "type": "module",
@@ -79,25 +79,24 @@ npx jest
     "test": "Mocha"
   },
 ```
-Debes borrar ahora o guardar el archivo "appp.test.js y el calculadora.test.js", esos son los codigos para el test jest,si no se hace el framework mocha va a intentar evaluar el codigo jest dando un error.
+Debes borrar los archivos de las pruebas jest si no el framework mocha tendra un error remplazalo con el nuevo
 ```bash
-npx mocha
+npx test
 ```
 ## 📁 Estructura del proyecto
 ```bash
 📦 calculadora/
 ├── src/
-│   ├── index.html --Index base sin funciones vista previa
-│   ├── index2.html
+│   ├── index.html --Index base con pruebas unitarias
 │   ├── styles.css
-│   └── app.js
+│   └── app.js     --Funcion logico de la calculadora
 ├── test/
-│   ├── app.test.js --Codigo para pruebas Jest
-│   ├── appp.test.js --Codigo para pruebas Mocha
-│   ├── calculadora.test.js --Codigo para pruebas Jest si esta funcionando correctamente la calculadora
+│   ├── app.test.js --Codigo para pruebas basicas Jest y mocha
+│   ├── pruebas.test.js --Codigo para pruebas con gran carga jest y mocha
+│   ├── calculadora.test.js --Codigo para pruebas Jest si esta funcionando correctamente la calculadora en caso de JEST
 │   └── Otros.etc
 ├── ....
-├── package.json
+├── package.json -- script para el uso del framework
 ├── jest.config.js
 └── README.md
 ```
