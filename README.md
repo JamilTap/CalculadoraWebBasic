@@ -109,5 +109,5 @@ npm test
 └── README.md
 ```
 ## 👨‍💻 Autor
-Jamil Tapia
+Jamil Tapuy
 📧 Contacto
