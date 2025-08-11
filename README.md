@@ -7,6 +7,7 @@ Incluye historial de operaciones, interfaz responsive y pruebas automatizadas.
 
 📖 Descripción del estudio
 En el Instituto Superior Tecnológico Tena se identificó la necesidad de establecer criterios comparativos para determinar cuál framework de pruebas unitarias se adapta mejor al desarrollo de aplicaciones frontend.
+
 Este proyecto compara Jest y Mocha, evaluando:
 
 Rendimiento
@@ -111,6 +112,3 @@ Editar
 👨‍💻 Autor
 Jamil Tapia
 📧 Contacto
-💼 GitHub: Jamiltap
-```
-## 📄 Licencia
