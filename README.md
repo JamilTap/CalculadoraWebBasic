@@ -1,4 +1,4 @@
-🧮 Calculadora Web – Comparativa Jest vs Mocha
+## 🧮 Calculadora Web – Comparativa Jest vs Mocha
 Una calculadora web desarrollada con HTML, CSS y JavaScript puro, utilizada como módulo experimental para comparar Jest y Mocha como frameworks de pruebas unitarias en proyectos JavaScript.
 Incluye historial de operaciones, interfaz responsive y pruebas automatizadas.
 
