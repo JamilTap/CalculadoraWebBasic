@@ -45,6 +45,7 @@ Pruebas automatizadas (Jest y Mocha)
 
 <p float="left"> <img src="https://github.com/user-attachments/assets/3206d7a0-0690-4002-9b2a-e44813665d16" width="400"/> <img src="https://github.com/user-attachments/assets/64d9df0b-2635-43ad-b999-578702056688" width="400"/> </p>
  ## ⚙️ Funcionalidades
+ 
 ✅ Operaciones básicas (suma, resta, multiplicación, división, porcentaje)
 
 ✅ Agrupación con paréntesis
