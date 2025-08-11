@@ -10,27 +10,14 @@ En el Instituto Superior Tecnológico Tena se identificó la necesidad de establ
 
 Este proyecto compara Jest y Mocha, evaluando:
 
----
-Rendimiento
----
+> Rendimiento
+> Facilidad de uso
+> Adaptabilidad en entornos de desarrollo
+> Como caso de estudio, se desarrolló una calculadora web y se aplicaron pruebas unitarias para:
+> Validar operaciones básicas
+> Manejar errores
+> Controlar entradas inválidas
 
-Facilidad de uso
----
-
-Adaptabilidad en entornos de desarrollo
----
-
-Como caso de estudio, se desarrolló una calculadora web y se aplicaron pruebas unitarias para:
----
-
-Validar operaciones básicas
----
-
-Manejar errores
----
-
-Controlar entradas inválidas
----
 
 ## 📊 Resultados
 Métrica	Jest	Mocha
@@ -49,14 +36,14 @@ Mocha es mejor para desarrollos que requieren personalización y control granula
 
 Las pruebas automatizadas, junto con estándares como ISO/IEC 25010 e ISO/IEC/IEEE 29119, mejoran la calidad del software.
 
-🖥️ Capturas de pantalla
+## 🖥️ Capturas de pantalla
 Interfaz de la calculadora
 
 <p float="left"> <img src="https://github.com/user-attachments/assets/bba3e4b2-5bc2-491d-96b2-e4678b4da90d" width="400"/> <img src="https://github.com/user-attachments/assets/588dfb74-5e9f-4901-a2f3-d1dfa25e4e1e" width="400"/> </p>
 Pruebas automatizadas (Jest y Mocha)
 
 <p float="left"> <img src="https://github.com/user-attachments/assets/3206d7a0-0690-4002-9b2a-e44813665d16" width="400"/> <img src="https://github.com/user-attachments/assets/64d9df0b-2635-43ad-b999-578702056688" width="400"/> </p>
-⚙️ Funcionalidades
+ ## ⚙️ Funcionalidades
 ✅ Operaciones básicas (suma, resta, multiplicación, división, porcentaje)
 
 ✅ Agrupación con paréntesis
@@ -67,7 +54,7 @@ Pruebas automatizadas (Jest y Mocha)
 
 ✅ Pruebas automatizadas con Jest y Mocha
 
-🛠️ Tecnologías usadas
+## 🛠️ Tecnologías usadas
 HTML5
 
 CSS3
@@ -78,7 +65,7 @@ Jest (testing)
 
 Mocha + Chai (testing alternativa)
 
-📦 Instalación y ejecución
+## 📦 Instalación y ejecución
 bash
 Copiar
 Editar
@@ -88,7 +75,7 @@ cd calculadora
 
 # Abrir en navegador
 index.html
-🧪 Ejecutar pruebas
+## 🧪 Ejecutar pruebas
 Jest
 bash
 Copiar
@@ -101,11 +88,11 @@ Copiar
 Editar
 npm install --save-dev mocha chai
 npm test
-📁 Estructura del proyecto
+## 📁 Estructura del proyecto
 bash
 Copiar
 Editar
-📦 calculadora/
+## 📦 calculadora/
 ├── src/
 │   ├── index.html        # Interfaz principal
 │   ├── styles.css        # Estilos
