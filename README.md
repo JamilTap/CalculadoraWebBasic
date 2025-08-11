@@ -93,6 +93,7 @@ bash
 Copiar
 Editar
 ## 📦 calculadora/
+bash
 ├── src/
 │   ├── index.html        # Interfaz principal
 │   ├── styles.css        # Estilos
@@ -104,6 +105,6 @@ Editar
 ├── package.json
 ├── jest.config.js
 └── README.md
-👨‍💻 Autor
+## 👨‍💻 Autor
 Jamil Tapia
 📧 Contacto
