@@ -1,107 +1,116 @@
-# 🧮 Calculadora Web
+🧮 Calculadora Web – Comparativa Jest vs Mocha
+Una calculadora web desarrollada con HTML, CSS y JavaScript puro, utilizada como módulo experimental para comparar Jest y Mocha como frameworks de pruebas unitarias en proyectos JavaScript.
+Incluye historial de operaciones, interfaz responsive y pruebas automatizadas.
 
-Una calculadora web desarrollada con HTML, CSS y JavaScript puro. Incluye historial de operaciones y pruebas automatizadas usando **Jest** y **Mocha**.
+🌐 Demo: Calculadora Web
+📂 Repositorio: GitHub
 
-> Calculadora Web (https://jamiltap.github.io/CalculadoraWebBasic/)
----
+📖 Descripción del estudio
+En el Instituto Superior Tecnológico Tena se identificó la necesidad de establecer criterios comparativos para determinar cuál framework de pruebas unitarias se adapta mejor al desarrollo de aplicaciones frontend.
+Este proyecto compara Jest y Mocha, evaluando:
 
-## 🚀 Demo
-> 📂 Repositorio: https://github.com/Jamiltap/calculadora
+Rendimiento
 
----
+Facilidad de uso
 
-## 📸 Capturas de pantalla
-🖥️ Interfaz de la calculadora
+Adaptabilidad en entornos de desarrollo
+
+Como caso de estudio, se desarrolló una calculadora web y se aplicaron pruebas unitarias para:
+
+Validar operaciones básicas
+
+Manejar errores
+
+Controlar entradas inválidas
+
+📊 Resultados
+Métrica	Jest	Mocha
+Tiempo de ejecución total	3,2 s (incluye métricas)	3 ms (sin arranque del entorno)
+Configuración inicial	Sencilla, integrada	Requiere configuración extra
+Librerías extra	No necesarias	Necesita Chai u otras
+Cobertura de código	Integrada	Requiere configuración
+Claridad en reportes	Alta	Media
+Flexibilidad	Media	Alta
+
+Conclusiones:
+
+Jest es ideal para entornos educativos y proyectos ágiles.
+
+Mocha es mejor para desarrollos que requieren personalización y control granular.
+
+Las pruebas automatizadas, junto con estándares como ISO/IEC 25010 e ISO/IEC/IEEE 29119, mejoran la calidad del software.
+
+🖥️ Capturas de pantalla
+Interfaz de la calculadora
+
 <p float="left"> <img src="https://github.com/user-attachments/assets/bba3e4b2-5bc2-491d-96b2-e4678b4da90d" width="400"/> <img src="https://github.com/user-attachments/assets/588dfb74-5e9f-4901-a2f3-d1dfa25e4e1e" width="400"/> </p>
-✅ Pruebas automatizadas (Jest y Mocha)
+Pruebas automatizadas (Jest y Mocha)
+
 <p float="left"> <img src="https://github.com/user-attachments/assets/3206d7a0-0690-4002-9b2a-e44813665d16" width="400"/> <img src="https://github.com/user-attachments/assets/64d9df0b-2635-43ad-b999-578702056688" width="400"/> </p>
----
+⚙️ Funcionalidades
+✅ Operaciones básicas (suma, resta, multiplicación, división, porcentaje)
 
-## ⚙️ Funcionalidades
+✅ Agrupación con paréntesis
 
-- ✅ Operaciones básicas: suma, resta, multiplicación, división, porcentaje
-- ✅ Agrupación con paréntesis
-- ✅ Historial de operaciones
-- ✅ Interfaz responsive
-- ✅ Pruebas automatizadas unitarias
+✅ Historial de operaciones
 
----
+✅ Interfaz responsive
 
-## 🛠️ Tecnologías usadas
+✅ Pruebas automatizadas con Jest y Mocha
 
-- HTML5
-- CSS3
-- JavaScript (vanilla)
-- Jest (testing)
-- Mocha (testing alternativa)
+🛠️ Tecnologías usadas
+HTML5
 
----
+CSS3
 
-## 📦 Instalación
+JavaScript (vanilla)
 
-1. Clona el repositorio:
+Jest (testing)
 
+Mocha + Chai (testing alternativa)
 
+📦 Instalación y ejecución
+bash
+Copiar
+Editar
+# Clonar repositorio
 git clone https://github.com/Jamiltap/calculadora.git
-
 cd calculadora
 
-2. Abre `index.html` en tu navegador.
-
-## Cómo ejecutar pruebas
-3.Instala las dependencias (si hay):
-```bash
+# Abrir en navegador
+index.html
+🧪 Ejecutar pruebas
+Jest
+bash
+Copiar
+Editar
 npm install --save-dev jest @testing-library/jest-dom jsdom
-npm jest
-```
-## 🧪 Ejecutar Pruebas Jest
-4. Extraer el archivo jest test y dejarlo en la carpeta del index, cambiar el script para el uso del framework
-   
-```bash
-  "type": "module",
-  "scripts": {
-    "test": "jest"
-  },
- 
-```
-NOTA: debe marcarles unos 15 errores en ambos frameworks, eso son errores provocados por el desarrollador para comprobar el funcionamiento de ambos framework
----
-5. Ejecuta las pruebas Jest con el siguiente comando en la terminal
-```bash
-npx jest
-```
-##  Ejecutar Pruebas Mocha
-6. Extraer el  archivo "mocha test" y cambiar el una parte del codigo del Package.json,el "test" a Mocha
-   
- ```bash
-  "type": "module",
-  "scripts": {
-    "test": "Mocha"
-  },
-```
-Debes borrar los archivos de las pruebas jest si no el framework mocha tendra un error remplazalo con el nuevo
-```bash
-npx test
-```
-## 📁 Estructura del proyecto
-```bash
+npm test
+Mocha
+bash
+Copiar
+Editar
+npm install --save-dev mocha chai
+npm test
+📁 Estructura del proyecto
+bash
+Copiar
+Editar
 📦 calculadora/
 ├── src/
-│   ├── index.html --Index base con pruebas unitarias
-│   ├── styles.css
-│   └── app.js     --Funcion logico de la calculadora
+│   ├── index.html        # Interfaz principal
+│   ├── styles.css        # Estilos
+│   └── app.js            # Lógica de la calculadora
 ├── test/
-│   ├── app.test.js --Codigo para pruebas basicas Jest y mocha
-│   ├── pruebas.test.js --Codigo para pruebas con gran carga jest y mocha
-│   ├── calculadora.test.js --Codigo para pruebas Jest si esta funcionando correctamente la calculadora en caso de JEST
-│   └── Otros.etc
-├── ....
-├── package.json -- script para el uso del framework
+│   ├── app.test.js       # Pruebas básicas Jest/Mocha
+│   ├── pruebas.test.js   # Pruebas de carga
+│   ├── calculadora.test.js # Validación Jest
+├── package.json
 ├── jest.config.js
 └── README.md
-```
-## 🧑‍💻 Autor
-```bash
+👨‍💻 Autor
+Jamil Tapia
+📧 Contacto
 💼 GitHub: Jamiltap
 ```
 ## 📄 Licencia
