@@ -2,9 +2,10 @@
 Una calculadora web desarrollada con HTML, CSS y JavaScript puro, utilizada como módulo experimental para comparar Jest y Mocha como frameworks de pruebas unitarias en proyectos JavaScript.
 Incluye historial de operaciones, interfaz responsive y pruebas automatizadas.
 
-🌐 Demo: Calculadora Web
+🌐 Demo: > Calculadora Web (https://jamiltap.github.io/CalculadoraWebBasic/)
+---
 📂 Repositorio: GitHub
-
+---
 📖 Descripción del estudio
 En el Instituto Superior Tecnológico Tena se identificó la necesidad de establecer criterios comparativos para determinar cuál framework de pruebas unitarias se adapta mejor al desarrollo de aplicaciones frontend.
 
@@ -67,8 +68,9 @@ Mocha + Chai (testing alternativa)
 
 ## 📦 Instalación y ejecución
 bash
-Copiar
-Editar
+npm install --save-dev jest @testing-library/jest-dom jsdom
+npm jest
+---
 # Clonar repositorio
 git clone https://github.com/Jamiltap/calculadora.git
 cd calculadora
