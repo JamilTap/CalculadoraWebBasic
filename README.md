@@ -67,9 +67,12 @@ Jest (testing)
 Mocha + Chai (testing alternativa)
 
 ## 📦 Instalación y ejecución
-bash
+```bash
+npm install --save-dev jest @testing-library/jest-dom jsdom
+npm jestbash
 npm install --save-dev jest @testing-library/jest-dom jsdom
 npm jest
+```
 ---
 # Clonar repositorio
 git clone https://github.com/Jamiltap/calculadora.git
@@ -79,23 +82,20 @@ cd calculadora
 index.html
 ## 🧪 Ejecutar pruebas
 Jest
-bash
-Copiar
-Editar
+```bash
+
 npm install --save-dev jest @testing-library/jest-dom jsdom
 npm test
+```
 Mocha
-bash
-Copiar
-Editar
+```bash
 npm install --save-dev mocha chai
 npm test
+```
 ## 📁 Estructura del proyecto
-bash
-Copiar
-Editar
+
 ## 📦 calculadora/
-bash
+```bash
 ├── src/
 │   ├── index.html        # Interfaz principal
 │   ├── styles.css        # Estilos
@@ -107,6 +107,7 @@ bash
 ├── package.json
 ├── jest.config.js
 └── README.md
+```
 ## 👨‍💻 Autor
 Jamil Tapia
 📧 Contacto
