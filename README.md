@@ -24,7 +24,7 @@ Manejar errores
 
 Controlar entradas inválidas
 
-📊 Resultados
+## 📊 Resultados
 Métrica	Jest	Mocha
 Tiempo de ejecución total	3,2 s (incluye métricas)	3 ms (sin arranque del entorno)
 Configuración inicial	Sencilla, integrada	Requiere configuración extra
