@@ -10,19 +10,27 @@ En el Instituto Superior Tecnológico Tena se identificó la necesidad de establ
 
 Este proyecto compara Jest y Mocha, evaluando:
 
+---
 Rendimiento
+---
 
 Facilidad de uso
+---
 
 Adaptabilidad en entornos de desarrollo
+---
 
 Como caso de estudio, se desarrolló una calculadora web y se aplicaron pruebas unitarias para:
+---
 
 Validar operaciones básicas
+---
 
 Manejar errores
+---
 
 Controlar entradas inválidas
+---
 
 ## 📊 Resultados
 Métrica	Jest	Mocha
